@@ -4,4 +4,4 @@ metadata:
   name: default-security-policy
 spec:
   policy:
-    {{ lookup('url', 'https://raw.githubusercontent.com/danvarelajar/secops/main/default-security-policy', split_lines=False) }}
+    {{ lookup('url', 'https://raw.githubusercontent.com/danvarelajar/secops/main/default-security-policy', split_lines=False) | to_yaml }}
