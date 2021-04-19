@@ -1,6 +1,6 @@
 {
   "policy": {
-    "name": "bot-defense-policy",
+    "name": "default-security-policy",
     "template": {
       "name": "POLICY_TEMPLATE_NGINX_BASE"
     },
