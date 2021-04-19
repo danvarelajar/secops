@@ -1,109 +1,59 @@
-{
-  "policy": {
-    "name": "default-security-policy",
-    "template": {
-      "name": "POLICY_TEMPLATE_NGINX_BASE"
-    },
-    "applicationLanguage": "utf-8",
-    "enforcementMode": "blocking",
-    "signature-requirements": [
-      {
-        "tag": "Fruits"
-      }
-    ],
-    "signature-sets": [
-      {
-        "name": "apple_sigs",
-        "block": true,
-        "signatureSet": {
-          "filter": {
-            "tagValue": "Fruits",
-            "tagFilter": "eq"
-          }
-        }
-      }
-    ],
-    "blocking-settings": {
-      "violations": [
-        {
-          "name": "VIOL_COOKIE_MODIFIED",
-          "alarm": true,
-          "block": true
-        },
-        {
-          "name": "VIOL_EVASION",
-          "alarm": true,
-          "block": true
-        }
-      ],
-      "evasions": [
-        {
-          "description": "Bad unescape",
-          "enabled": true
-        },
-        {
-          "description": "Directory traversals",
-          "enabled": true
-        },
-        {
-          "description": "Bare byte decoding",
-          "enabled": true
-        },
-        {
-          "description": "Apache whitespace",
-          "enabled": true
-        },
-        {
-          "description": "Multiple decoding",
-          "enabled": true,
-          "maxDecodingPasses": 3
-        },
-        {
-          "description": "IIS Unicode codepoints",
-          "enabled": true
-        },
-        {
-          "description": "IIS backslashes",
-          "enabled": true
-        },
-        {
-          "description": "%u decoding",
-          "enabled": true
-        }
-      ]
-    },
-    "bot-defense": {
-      "settings": {
-        "isEnabled": true
-      },
-      "mitigations": {
-        "classes": [
-          {
-            "name": "trusted-bot",
-            "action": "alarm"
-          },
-          {
-            "name": "untrusted-bot",
-            "action": "block"
-          },
-          {
-            "name": "malicious-bot",
-            "action": "block"
-          }
-        ]
-      }
-    },
-    "cookies": [
-      {
-        "name": "dvwaSession",
-        "type": "explicit",
-        "enforcementType": "enforce"
-      },
-      {
-        "name": "PHPSESSID",
-        "type": "explicit",
-        "enforcementType": "enforce"
-      }
-    ]
-  }
-}
+policy:
+  name: default-security-policy
+  template:
+    name: POLICY_TEMPLATE_NGINX_BASE
+  applicationLanguage: utf-8
+  enforcementMode: blocking
+  signature-requirements:
+  - tag: Fruits
+  signature-sets:
+  - name: apple_sigs
+    block: true
+    signatureSet:
+      filter:
+        tagValue: Fruits
+        tagFilter: eq
+  blocking-settings:
+    violations:
+    - name: VIOL_COOKIE_MODIFIED
+      alarm: true
+      block: true
+    - name: VIOL_EVASION
+      alarm: true
+      block: true
+    evasions:
+    - description: Bad unescape
+      enabled: true
+    - description: Directory traversals
+      enabled: true
+    - description: Bare byte decoding
+      enabled: true
+    - description: Apache whitespace
+      enabled: true
+    - description: Multiple decoding
+      enabled: true
+      maxDecodingPasses: 3
+    - description: IIS Unicode codepoints
+      enabled: true
+    - description: IIS backslashes
+      enabled: true
+    - description: "%u decoding"
+      enabled: true
+  bot-defense:
+    settings:
+      isEnabled: true
+    mitigations:
+      classes:
+      - name: trusted-bot
+        action: alarm
+      - name: untrusted-bot
+        action: block
+      - name: malicious-bot
+        action: block
+  cookies:
+  - name: dvwaSession
+    type: explicit
+    enforcementType: enforce
+  - name: PHPSESSID
+    type: explicit
+    enforcementType: enforce
