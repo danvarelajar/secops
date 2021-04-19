@@ -4,4 +4,4 @@ metadata:
   name: sec-bot-defense
 spec:
   policy:
-    {{}}
+    {{ lookup('url', 'https://raw.githubusercontent.com/danvarelajar/secops/main/default-security-policy', split_lines=False) }}
