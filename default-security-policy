@@ -105,8 +105,5 @@
         "enforcementType": "enforce"
       }
     ]
-  },
-  "modificationsReference": {
-        "link": "https://raw.githubusercontent.com/danvarelajar/secops/main/default-policy-modifications"
   }
 }
